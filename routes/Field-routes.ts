@@ -9,7 +9,7 @@ router.post('/add',async (req,res,next)=>{
     const field: Field= req.body;
     try{
         const addedField = await FieldAdd(field);
-        res.send('field Added')
+        res.send('field Added');
     }catch(err){
         console.log("error adding field", err);
         res.status(400).send("error adding field");
