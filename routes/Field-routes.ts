@@ -1,6 +1,6 @@
 import express from "express";
 import {Field} from "../model/Field";
-import {FieldAdd, FieldDelete, FieldUpdate} from "../database/field-data-store";
+import {FieldAdd, FieldDelete, FieldUpdate, getAllFields} from "../database/field-data-store";
 
 const router = express.Router();
 
@@ -80,7 +80,18 @@ const field = (upload: any) => {
 
     //View
 
+    router.get('/view',async (req,res,next)=>{
 
+        try{
+            const fields=  await getAllFields();
+            res.json(fields);
+        }catch(err){
+            console.log("error getting customers", err);
+        }
+
+    })
+
+    return router;
 
 };
 export default field;

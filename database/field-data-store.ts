@@ -62,4 +62,11 @@ export async function FieldDelete(fieldName: string) {
     }
 }
 
+export async function getAllFields(){
+    try{
+        return await prisma.field.findMany();
+    }catch(err){
+        console.log("error getting fields from prisma data",err);
+    }
+}
 
