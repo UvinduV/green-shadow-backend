@@ -51,3 +51,15 @@ export async function FieldUpdate(fieldName: string, updatedField: Partial<Field
     }
 }
 
+export async function FieldDelete(fieldName: string) {
+    try{
+        await prisma.field.delete({
+            where: {fieldName: fieldName}
+        });
+        console.log('field deleted :',fieldName);
+    }catch(err){
+        console.log("error deleting field", err);
+    }
+}
+
+

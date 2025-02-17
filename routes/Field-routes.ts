@@ -1,6 +1,6 @@
 import express from "express";
 import {Field} from "../model/Field";
-import {FieldAdd, FieldUpdate} from "../database/field-data-store";
+import {FieldAdd, FieldDelete, FieldUpdate} from "../database/field-data-store";
 
 const router = express.Router();
 
@@ -64,7 +64,23 @@ const field = (upload: any) => {
         }
     });
 
-    return router;
+    //Delete
+
+    router.delete('/delete/:fieldName', async (req, res) => {
+        const fieldName = req.params.fieldName;
+
+        try {
+            const deleteResult = await FieldDelete(fieldName);
+            res.send("field delete success!");
+        } catch (err) {
+            console.error("Error deleting field:", err);
+            res.status(400).json({ error: "Error deleting field" });
+        }
+    });
+
+    //View
+
+
 
 };
 export default field;
