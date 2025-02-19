@@ -31,7 +31,7 @@ export async function StaffAdd(s: Staff ){
 export async function StaffUpdate(fistName: string, s: Staff){
     try{
         const updatedRecord=await prisma.staff.update({
-            where:{ firstName : s.firstName},
+            where:{ firstName : fistName},
             data:{
                 lastName: s.lastName,
                 designation: s.designation,

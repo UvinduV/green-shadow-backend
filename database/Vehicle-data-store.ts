@@ -1,6 +1,5 @@
 import { Fuel,Status,PrismaClient } from "@prisma/client";
 import {Vehicle} from "../model/Vehicle";
-import {Staff} from "../model/Staff";
 
 const prisma =new PrismaClient();
 
@@ -26,7 +25,7 @@ export async function VehicleAdd(v: Vehicle ){
 export async function VehicleUpdate(licensePlateNumber: string, v: Vehicle){
     try{
         const updatedRecord=await prisma.vehicle.update({
-            where:{ licensePlateNumber : v.licensePlateNumber},
+            where:{ licensePlateNumber : licensePlateNumber},
             data:{
                 vehicleCategory: v.vehicleCategory,
                 fuelType: v.fuelType,
@@ -38,5 +37,16 @@ export async function VehicleUpdate(licensePlateNumber: string, v: Vehicle){
         console.log("vehicle Updated:", updatedRecord);
     }catch(err){
         console.log("error updating vehicle", err);
+    }
+}
+
+export async function VehicleDelete(licensePlateNumber: string) {
+    try{
+        await prisma.vehicle.delete({
+            where: {licensePlateNumber: licensePlateNumber}
+        });
+        console.log('Vehicle deleted !:',licensePlateNumber);
+    }catch(err){
+        console.log("error deleting vehicle!", err);
     }
 }

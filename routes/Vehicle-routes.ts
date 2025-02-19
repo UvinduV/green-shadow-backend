@@ -1,6 +1,6 @@
 import express from "express";
 import {Vehicle} from "../model/Vehicle";
-import {VehicleAdd, VehicleUpdate} from "../database/Vehicle-data-store";
+import {VehicleAdd, VehicleDelete, VehicleUpdate} from "../database/Vehicle-data-store";
 
 const router = express.Router();
 
@@ -30,6 +30,19 @@ router.put('/update/:licensePlateNumber',async (req,res,next)=>{
 
     }catch(err){
         console.log("error updating vehicle", err);
+    }
+});
+
+//delete
+router.delete('/delete/:licensePlateNumber', async (req, res) => {
+    const licensePlateNumber = req.params.licensePlateNumber;
+
+    try {
+        const deleteResult = await VehicleDelete(licensePlateNumber);
+        res.send("Vehicle delete success!");
+    } catch (err) {
+        console.error("Error deleting vehicle:", err);
+        res.status(400).json({ error: "Error deleting vehicle" });
     }
 });
 
