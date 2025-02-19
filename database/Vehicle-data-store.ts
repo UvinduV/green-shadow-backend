@@ -50,3 +50,11 @@ export async function VehicleDelete(licensePlateNumber: string) {
         console.log("error deleting vehicle!", err);
     }
 }
+
+export async function getAllVehicles(){
+    try{
+        return await prisma.vehicle.findMany();
+    }catch(err){
+        console.log("error getting Vehicles from prisma data",err);
+    }
+}
