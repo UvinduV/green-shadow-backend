@@ -39,3 +39,14 @@ export async function EquipmentUpdate(name: string, e: Equipment){
         console.log("error updating equipment", err);
     }
 }
+
+export async function EquipmentDelete(name: string) {
+    try{
+        await prisma.equipment.delete({
+            where: {name: name}
+        });
+        console.log('Equipment deleted !:',name);
+    }catch(err){
+        console.log("error deleting Equipment!", err);
+    }
+}
