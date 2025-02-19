@@ -55,3 +55,11 @@ export async function CropDelete(commonName: string) {
     }
 }
 
+export async function getAllCrops(){
+    try{
+        return await prisma.crop.findMany();
+    }catch(err){
+        console.log("error getting crops from prisma data",err);
+    }
+}
+

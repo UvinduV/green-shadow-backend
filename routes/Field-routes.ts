@@ -86,7 +86,7 @@ const field = (upload: any) => {
             const fields=  await getAllFields();
             res.json(fields);
         }catch(err){
-            console.log("error getting customers", err);
+            console.log("error getting fields", err);
         }
 
     });

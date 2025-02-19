@@ -1,6 +1,7 @@
 import express from "express";
 import {Crop} from "../model/Crop";
-import {CropAdd, CropDelete, CropUpdate} from "../database/Crop-data-store";
+import {CropAdd, CropDelete, CropUpdate, getAllCrops} from "../database/Crop-data-store";
+import {getAllFields} from "../database/field-data-store";
 
 const router = express.Router();
 
@@ -75,6 +76,17 @@ const crop = (upload: any) => {
         } catch (err) {
             console.error("Error deleting crop:", err);
             res.status(400).json({ error: "Error deleting crop" });
+        }
+    });
+
+    //get All crops
+
+    router.get('/view',async (req,res,next)=>{
+        try{
+            const crops=  await getAllCrops();
+            res.json(crops);
+        }catch(err){
+            console.log("error getting crops", err);
         }
     });
 
