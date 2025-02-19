@@ -44,3 +44,14 @@ export async function CropUpdate(commonName: string, updatedCrop: Partial<Crop>)
     }
 }
 
+export async function CropDelete(commonName: string) {
+    try{
+        await prisma.crop.delete({
+            where: {commonName: commonName}
+        });
+        console.log('crop deleted !:',commonName);
+    }catch(err){
+        console.log("error deleting crop!", err);
+    }
+}
+

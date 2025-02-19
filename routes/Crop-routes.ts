@@ -1,6 +1,6 @@
 import express from "express";
 import {Crop} from "../model/Crop";
-import {CropAdd, CropUpdate} from "../database/Crop-data-store";
+import {CropAdd, CropDelete, CropUpdate} from "../database/Crop-data-store";
 
 const router = express.Router();
 
@@ -61,6 +61,20 @@ const crop = (upload: any) => {
         } catch (err) {
             console.error("Error updating Crop:", err);
             res.status(400).json({ error: "Error updating Crop" });
+        }
+    });
+
+    //Delete
+
+    router.delete('/delete/:commonName', async (req, res) => {
+        const commonName = req.params.commonName;
+
+        try {
+            const deleteResult = await CropDelete(commonName);
+            res.send("crop delete success!");
+        } catch (err) {
+            console.error("Error deleting crop:", err);
+            res.status(400).json({ error: "Error deleting crop" });
         }
     });
 
