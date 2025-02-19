@@ -50,3 +50,11 @@ export async function EquipmentDelete(name: string) {
         console.log("error deleting Equipment!", err);
     }
 }
+
+export async function getAllEquipments(){
+    try{
+        return await prisma.equipment.findMany();
+    }catch(err){
+        console.log("error getting Equipments from prisma data",err);
+    }
+}

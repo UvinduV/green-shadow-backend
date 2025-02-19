@@ -1,6 +1,6 @@
 import express from "express";
 import {Equipment} from "../model/Equipment";
-import {EquipmentAdd, EquipmentDelete, EquipmentUpdate} from "../database/Equipment-data-store";
+import {EquipmentAdd, EquipmentDelete, EquipmentUpdate, getAllEquipments} from "../database/Equipment-data-store";
 
 const router = express.Router();
 
@@ -43,6 +43,16 @@ router.delete('/delete/:name', async (req, res) => {
     } catch (err) {
         console.error("Error deleting equipment :", err);
         res.status(400).json({ error: "Error deleting Equipment" });
+    }
+});
+
+//View
+router.get('/view',async (req,res,next)=>{
+    try{
+        const equipment=  await getAllEquipments();
+        res.json(equipment);
+    }catch(err){
+        console.log("error getting Equipments", err);
     }
 });
 
