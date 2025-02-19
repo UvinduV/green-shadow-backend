@@ -50,7 +50,7 @@ const field = (upload: any) => {
         const updatedField: Partial<Field> = {
             fieldName,
             location,
-            extentSize: extentSize ? Number(extentSize) : undefined, // Convert to number if provided
+            extentSize: extentSize ? Number(extentSize) : undefined,
             ...(fieldImage1 && { fieldImage1 }),
             ...(fieldImage2 && { fieldImage2 })
         };
@@ -89,7 +89,7 @@ const field = (upload: any) => {
             console.log("error getting customers", err);
         }
 
-    })
+    });
 
     return router;
 

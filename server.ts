@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import fieldRoutes from "./routes/Field-routes"
+import cropRoutes from "./routes/Crop-routes";
 
 const app = express();
 
@@ -20,6 +21,7 @@ const upload = multer({ storage: storage });
 app.use(express.json());
 
 app.use("/Field",fieldRoutes(upload));
+app.use("/Crop",cropRoutes(upload));
 
 app.listen(3002,(err=>{
     console.log("server port 3002");

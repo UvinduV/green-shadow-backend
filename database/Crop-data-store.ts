@@ -20,5 +20,27 @@ export async function CropAdd(c: Crop ){
     }catch(err) {
         console.log("error adding crop", err);
     }
-
 }
+
+export async function CropUpdate(commonName: string, updatedCrop: Partial<Crop>) {
+    try {
+
+        const updatedRecord = await prisma.crop.update({
+            where: { commonName },
+            data:{
+                scientificName:updatedCrop.scientificName,
+                cropImage1:updatedCrop.cropImage1,
+                category:updatedCrop.category,
+                season:updatedCrop.season,
+                fieldId:updatedCrop.fieldId
+            }
+        });
+
+        console.log("crop Updated:", updatedRecord);
+        return updatedRecord;
+    } catch (err) {
+        console.error("Error updating crop:", err);
+        throw new Error("crop update failed");
+    }
+}
+
