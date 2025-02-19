@@ -26,5 +26,46 @@ export async function StaffAdd(s: Staff ){
     }catch(err) {
         console.log("error adding staff", err);
     }
+}
 
+export async function StaffUpdate(fistName: string, s: Staff){
+    try{
+        const updatedRecord=await prisma.staff.update({
+            where:{ firstName : s.firstName},
+            data:{
+                lastName: s.lastName,
+                designation: s.designation,
+                gender: s.gender,
+                joinedDate: s.joinedDate,
+                dob:s.dob,
+                address:s.address,
+                contactNo:s.contactNo,
+                email:s.email,
+                role:s.role,
+                fieldId:s.fieldId
+            }
+        })
+        console.log("Staff Updated:", updatedRecord);
+    }catch(err){
+        console.log("error updating staff", err);
+    }
+}
+
+export async function StaffDelete(firstName: string) {
+    try{
+        await prisma.staff.delete({
+            where: {firstName: firstName}
+        });
+        console.log('staff deleted !:',firstName);
+    }catch(err){
+        console.log("error deleting staff!", err);
+    }
+}
+
+export async function getAllStaff(){
+    try{
+        return await prisma.staff.findMany();
+    }catch(err){
+        console.log("error getting staff from prisma data",err);
+    }
 }
