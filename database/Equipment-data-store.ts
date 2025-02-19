@@ -21,3 +21,21 @@ export async function EquipmentAdd(e: Equipment ){
         console.log("error adding equipment", err);
     }
 }
+
+export async function EquipmentUpdate(name: string, e: Equipment){
+    try{
+        const updatedRecord=await prisma.equipment.update({
+            where:{ name : name},
+            data:{
+                type: e.type,
+                status: e.status,
+                remarks: e.remarks,
+                staffId: e.staffId,
+                fieldId: e.fieldId
+            }
+        })
+        console.log("Equipment Updated:", updatedRecord);
+    }catch(err){
+        console.log("error updating equipment", err);
+    }
+}
