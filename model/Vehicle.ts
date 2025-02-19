@@ -1,9 +1,11 @@
+import {Fuel,Status} from "@prisma/client";
+
 export class Vehicle{
     vehicleCode!:number;
     licensePlateNumber!:string;
     vehicleCategory!:string;
-    fuelType!:string;
-    status!:string;
+    fuelType!:Fuel;
+    status!:Status;
     remarks!:string;
     staffId!:number;
 }
