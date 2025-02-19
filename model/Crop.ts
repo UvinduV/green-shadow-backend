@@ -1,9 +1,9 @@
 export class Crop{
-    cropCode!:string;
+    cropCode!:number;
     commonName!:string;
     scientificName!:string;
     cropImage1!:string;
     category!:string;
     season!:string;
-    fieldId!:string;
+    fieldId!:number;
 }

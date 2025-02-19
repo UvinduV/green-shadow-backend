@@ -1,5 +1,5 @@
 export class Field{
-    fieldCode!:string;
+    fieldCode!:number;
     fieldName!:string;
     location!:string;
     extentSize!:number;
