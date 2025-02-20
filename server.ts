@@ -6,6 +6,7 @@ import cropRoutes from "./routes/Crop-routes";
 import staffRoutes from "./routes/Staff-routes";
 import vehicleRoutes from "./routes/Vehicle-routes";
 import equipmentRoutes from "./routes/Equipment-routes";
+import logRoutes from "./routes/Log-routes";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/Crop",cropRoutes(upload));
 app.use("/Staff",staffRoutes);
 app.use("/Vehicle",vehicleRoutes);
 app.use("/Equipment",equipmentRoutes);
+app.use("/Log",logRoutes(upload));
 
 app.listen(3002,(err=>{
     console.log("server port 3002");
