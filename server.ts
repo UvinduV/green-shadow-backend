@@ -9,6 +9,7 @@ import equipmentRoutes from "./routes/Equipment-routes";
 import logRoutes from "./routes/Log-routes";
 
 const app = express();
+var cors = require("cors");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -23,6 +24,15 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use(express.json());
+app.use(cors());
+
+const corsOption={
+    origin: 'http://localhost:5173',
+    optionsSuccessStatus: 20
+}
+app.use(cors(corsOption));
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/Field",fieldRoutes(upload));
 app.use("/Crop",cropRoutes(upload));
