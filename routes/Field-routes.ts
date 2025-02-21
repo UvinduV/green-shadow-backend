@@ -1,6 +1,13 @@
 import express from "express";
 import {Field} from "../model/Field";
-import {FieldAdd, FieldDelete, FieldUpdate, getAllFields, getFieldNames} from "../database/field-data-store";
+import {
+    FieldAdd,
+    FieldDelete,
+    FieldUpdate,
+    getAllFields,
+    getFieldIdByName,
+    getFieldNames
+} from "../database/field-data-store";
 
 const router = express.Router();
 
@@ -98,6 +105,17 @@ const field = (upload: any) => {
             res.json(fieldNames);
         } catch (err) {
             console.error("Error getting field names", err);
+        }
+    });
+
+    //search fieldId by name
+    router.get('/searchFieldId/:fieldName',async (req,res,next)=>{
+        const fieldName = req.params.fieldName;
+        try{
+            const fieldId = await getFieldIdByName(fieldName);
+            res.json(fieldId);
+        }catch(err){
+            console.error("Error searching fieldId", err);
         }
     });
 

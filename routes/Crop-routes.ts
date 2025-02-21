@@ -1,7 +1,6 @@
 import express from "express";
 import {Crop} from "../model/Crop";
 import {CropAdd, CropDelete, CropUpdate, getAllCrops} from "../database/Crop-data-store";
-import {getAllFields} from "../database/field-data-store";
 
 const router = express.Router();
 
@@ -89,6 +88,8 @@ const crop = (upload: any) => {
             console.log("error getting crops", err);
         }
     });
+
+
 
     return router;
 };

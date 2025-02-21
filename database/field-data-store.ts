@@ -73,13 +73,27 @@ export async function getAllFields(){
 export async function getFieldNames(){
     try {
         const fields = await prisma.field.findMany({
-            select: { fieldName: true }, // Select only the fieldName column
+            select: { fieldName: true },
         });
 
-        return fields.map(field => field.fieldName); // Extract fieldName values
+        return fields.map(field => field.fieldName);
     } catch (err) {
         console.error("Error getting field name list from Prisma", err);
         return [];
+    }
+}
+
+export async function getFieldIdByName(fieldName: string): Promise<number | null> {
+    try {
+        const field = await prisma.field.findFirst({
+            where: { fieldName: fieldName },
+            select: { fieldCode: true }
+        });
+
+        return field ? field.fieldCode : null;
+    } catch (err) {
+        console.error("Error searching fieldId by fieldName", err);
+        return null;
     }
 }
 
