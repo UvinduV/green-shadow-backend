@@ -70,3 +70,18 @@ export async function getAllFields(){
     }
 }
 
+export async function getFieldNames(){
+    try {
+        const fields = await prisma.field.findMany({
+            select: { fieldName: true }, // Select only the fieldName column
+        });
+
+        return fields.map(field => field.fieldName); // Extract fieldName values
+    } catch (err) {
+        console.error("Error getting field name list from Prisma", err);
+        return [];
+    }
+}
+
+
+

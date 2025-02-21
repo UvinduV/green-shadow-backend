@@ -1,9 +1,8 @@
 import express from "express";
 import {Field} from "../model/Field";
-import {FieldAdd, FieldDelete, FieldUpdate, getAllFields} from "../database/field-data-store";
+import {FieldAdd, FieldDelete, FieldUpdate, getAllFields, getFieldNames} from "../database/field-data-store";
 
 const router = express.Router();
-
 
 const field = (upload: any) => {
     //save
@@ -91,7 +90,20 @@ const field = (upload: any) => {
 
     });
 
+    //Field Names
+
+    router.get('/fieldNames', async (req, res, next) => {
+        try {
+            const fieldNames = await getFieldNames();
+            res.json(fieldNames);
+        } catch (err) {
+            console.error("Error getting field names", err);
+        }
+    });
+
     return router;
+
+
 
 };
 export default field;
