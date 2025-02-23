@@ -69,3 +69,17 @@ export async function getAllStaff(){
         console.log("error getting staff from prisma data",err);
     }
 }
+
+
+export async function getStaffNames(){
+    try {
+        const staff = await prisma.staff.findMany({
+            select: { firstName: true },
+        });
+
+        return staff.map(staff => staff.firstName);
+    } catch (err) {
+        console.error("Error getting staff name list from Prisma", err);
+        return [];
+    }
+}
