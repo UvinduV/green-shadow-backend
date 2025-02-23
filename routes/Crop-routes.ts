@@ -20,7 +20,7 @@ const crop = (upload: any) => {
         newCrop.cropImage1=cropImage1;
         newCrop.category=category;
         newCrop.season=season;
-        newCrop.fieldId=fieldId;
+        newCrop.fieldId=Number(fieldId);
 
 
         try {

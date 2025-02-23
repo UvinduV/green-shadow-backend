@@ -17,7 +17,7 @@ export async function StaffAdd(s: Staff ){
                 contactNo: s.contactNo,
                 email: s.email,
                 role: s.role as Role,
-                fieldId: s.fieldId
+                fieldId: (s.fieldId)
 
             }
 

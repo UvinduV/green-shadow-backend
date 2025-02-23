@@ -24,6 +24,7 @@ enum Role {
   MANAGER
   ADMINISTRATIVE
   SCIENTIST
+  DRIVER
   OTHER
 }
 

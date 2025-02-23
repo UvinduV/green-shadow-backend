@@ -8,6 +8,7 @@ router.post('/add',async (req,res,next)=>{
     console.log(req.body);
 
     const staff: Staff= req.body;
+    Number(staff.fieldId);
     try{
         const addedStaff = await StaffAdd(staff);
         res.send('staff Added !')
@@ -21,6 +22,7 @@ router.post('/add',async (req,res,next)=>{
 router.put('/update/:firstName',async (req,res,next)=>{
     const firstName: string = req.params.firstName;
     const staff : Staff = req.body;
+    Number(staff.fieldId)
 
     try{
         await StaffUpdate(firstName, staff);
