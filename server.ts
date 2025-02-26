@@ -7,6 +7,7 @@ import staffRoutes from "./routes/Staff-routes";
 import vehicleRoutes from "./routes/Vehicle-routes";
 import equipmentRoutes from "./routes/Equipment-routes";
 import logRoutes from "./routes/Log-routes";
+import authRoutes from "./routes/auth-routes";
 
 const app = express();
 var cors = require("cors");
@@ -34,12 +35,14 @@ app.use(cors(corsOption));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+app.use("/auth",authRoutes)
 app.use("/Field",fieldRoutes(upload));
 app.use("/Crop",cropRoutes(upload));
 app.use("/Staff",staffRoutes);
 app.use("/Vehicle",vehicleRoutes);
 app.use("/Equipment",equipmentRoutes);
 app.use("/Log",logRoutes(upload));
+
 
 app.listen(3002,(err=>{
     console.log("server port 3002");
