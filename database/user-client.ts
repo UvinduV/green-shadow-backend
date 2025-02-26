@@ -15,3 +15,14 @@ export async function createUser(user : User) {
     });
     console.log("User created:", addedUser);
 }
+
+export async function verifyUserCredentials(verifyUser: User) {
+    const user : User | null = await prisma.user.findUnique({
+        where: { email: verifyUser.email },
+    });
+    if (!user) {
+        return false;
+    }
+
+    return await bcrypt.compare(verifyUser.password, user.password);
+}
