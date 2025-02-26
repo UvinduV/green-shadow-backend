@@ -9,6 +9,8 @@ router.post('/add',async (req,res,next)=>{
     console.log(req.body);
 
     const equipment: Equipment= req.body;
+    Number(equipment.staffId)
+    Number(equipment.fieldId)
     try{
         const addedEquipment = await EquipmentAdd(equipment);
         res.send('Equipment Added !')
@@ -22,6 +24,9 @@ router.post('/add',async (req,res,next)=>{
 router.put('/update/:name',async (req,res,next)=>{
     const name: string = req.params.name;
     const equipment : Equipment = req.body;
+
+    Number(equipment.staffId)
+    Number(equipment.fieldId)
 
     try{
         const updatedEquipment=await EquipmentUpdate(name, equipment);

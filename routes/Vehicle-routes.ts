@@ -9,6 +9,7 @@ router.post('/add',async (req,res,next)=>{
     console.log(req.body);
 
     const vehicle: Vehicle= req.body;
+    Number(vehicle.staffId)
     try{
         const addedVehicle = await VehicleAdd(vehicle);
         res.send('vehicle Added !')
@@ -22,6 +23,7 @@ router.post('/add',async (req,res,next)=>{
 router.put('/update/:licensePlateNumber',async (req,res,next)=>{
     const licensePlateNumber: string = req.params.licensePlateNumber;
     const vehicle : Vehicle = req.body;
+    Number(vehicle.staffId)
 
     try{
         const updatedVehicle=await VehicleUpdate(licensePlateNumber, vehicle);
